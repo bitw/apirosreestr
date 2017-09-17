@@ -2,7 +2,6 @@
 
 namespace Jilfond\Apirosreestr;
 
-
 use Jilfond\Apirosreestr\Exception\ApirosreestrException;
 
 class Client implements ClientInterface

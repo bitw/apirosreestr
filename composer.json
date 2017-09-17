@@ -1,5 +1,5 @@
 {
-  "name": "jilfond/composer-library-template",
+  "name": "jilfond/apirosreestr",
   "description": "an unofficial php-sdk for apirosreestr.ru",
   "keywords": ["api", "rosreestr", "library", "realty"],
   "license": "MIT",
