@@ -44,23 +44,23 @@ class Client implements ClientInterface
         if (is_string($query)) {
             $parameters =  ['json' => ['query' => $query,
                 'grouped' => $grouped
-                ]];
+            ]];
         } else if ($query instanceof CadasterSearchQuery) {
-            $parameters = ['query' => $query->getJsonQuery(),
-                            'grouped' => $grouped
-                ];
+            $parameters = ['json' => [
+                'query' => $query->getJsonQuery(),
+                'grouped' => $grouped ]
+            ];
         } else {
             throw new ApirosreestrException('query should be a string or instance of CadasterSearchQuery');
         }
-        $response = $this->client->post('/cadaster/search', ['body' => $parameters]);
+        $response = $this->client->post('cadaster/search', $parameters);
         return (string) $response->getBody();
     }
 
-    public function CadasterObjectInfoFull($query)
+    public function cadasterObjectInfoFull($query)
     {
-        $this->client->post('/cadaster/objectInfoFull', ['body' => [
-            'query' => $query,
-        ]]);
+        $response = $this->client->post('cadaster/objectInfoFull', ['json' => ['query' => $query]]);
+        return (string) $response->getBody();
     }
 
 
