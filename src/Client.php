@@ -27,7 +27,11 @@ class Client implements ClientInterface
             $this->instanceToken = $token;
         }
         $this->client = new \GuzzleHttp\Client([
-            'base_uri' => self::API_BASE_URL
+            'base_uri' => self::API_BASE_URL,
+            'headers' => [
+                'Token' => $token === null ? $this->instanceToken : $token,
+                'Content-Type' => 'application/json'
+            ]
         ]);
     }
     public static function setToken($token)
