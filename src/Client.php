@@ -54,13 +54,13 @@ class Client implements ClientInterface
             throw new ApirosreestrException('query should be a string or instance of CadasterSearchQuery');
         }
         $response = $this->client->post('cadaster/search', $parameters);
-        return (string) $response->getBody();
+        return json_decode($response->getBody(), true);
     }
 
     public function cadasterObjectInfoFull($query)
     {
         $response = $this->client->post('cadaster/objectInfoFull', ['json' => ['query' => $query]]);
-        return (string) $response->getBody();
+        return json_decode($response->getBody(), true);
     }
 
 
