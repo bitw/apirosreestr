@@ -63,5 +63,44 @@ class Client implements ClientInterface
         return json_decode($response->getBody(), true);
     }
 
+    public function cadasterSaveOrder($object, array $documents, array $rsn = [], $comment = null)
+    {
+        $obj = ['encoded_object' => $object,
+            'documents' => $documents,
+            ];
+
+        if (!empty($rsn)) {
+            $obj['rsn_items'] = $rsn;
+        }
+        if ($comment) {
+            $obj['comment'] = $comment;
+        }
+
+        $response = $this->client->post('cadaster/save_order', ['json' => $obj]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    public function transactionInfo($id)
+    {
+        $response = $this->client->post('transaction/info', ['json' => ['id' => $id]]);
+        return json_decode($response->getBody(), true);
+    }
+
+    public function transactionPay($id, $confirm)
+    {
+        $response = $this->client->post('transaction/pay', ['json' => ['id' => $id, 'confirm' => $confirm]]);
+        return json_decode($response->getBody(), true);
+    }
+
+    public function cadasterOrder($id)
+    {
+        $response = $this->client->post('transaction/pay', ['json' => ['id' => $id]]);
+        return json_decode($response->getBody(), true);
+    }
+    public function cadasterDownload($documentId, $format, $savePath) {
+        $this->client->request('POST', 'cadaster/download', ['json' => ['document_id' => $documentId, 'format' => $format], 'sink' => $savePath]);
+        return null;
+    }
 
 }
