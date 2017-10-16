@@ -95,7 +95,7 @@ class Client implements ClientInterface
 
     public function cadasterOrder($id)
     {
-        $response = $this->client->post('transaction/pay', ['json' => ['id' => $id]]);
+        $response = $this->client->post('transaction/orders', ['json' => ['id' => $id]]);
         return json_decode($response->getBody(), true);
     }
     public function cadasterDownload($documentId, $format, $savePath) {
