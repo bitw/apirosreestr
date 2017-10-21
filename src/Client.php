@@ -15,6 +15,10 @@ class Client implements ClientInterface
 
     private $client;
 
+    public $documentStatuses = [
+        2 => 'Ожидает оплаты',3 => 'В работе',4 => 'Выполнен',5 => 'Ошибка при обработке',6 => 'Отменен'
+    ];
+
     public function __construct($token = null)
     {
         if ($token === null) {
@@ -95,7 +99,7 @@ class Client implements ClientInterface
 
     public function cadasterOrder($id)
     {
-        $response = $this->client->post('transaction/orders', ['json' => ['id' => $id]]);
+        $response = $this->client->post('cadaster/orders', ['json' => ['id' => $id]]);
         return json_decode($response->getBody(), true);
     }
     public function cadasterDownload($documentId, $format, $savePath) {
