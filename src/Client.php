@@ -47,12 +47,14 @@ class Client implements ClientInterface
     {
         if (is_string($query)) {
             $parameters =  ['json' => ['query' => $query,
-                'grouped' => $grouped
+                'grouped' => $grouped,
+                'deep' => true,
             ]];
         } else if ($query instanceof CadasterSearchQuery) {
             $parameters = ['json' => [
                 'query' => $query->getJsonQuery(),
-                'grouped' => $grouped ]
+                'grouped' => $grouped,
+                'deep' => true,]
             ];
         } else {
             throw new ApirosreestrException('query should be a string or instance of CadasterSearchQuery');
