@@ -4,7 +4,7 @@ namespace Jilfond\Apirosreestr;
 
 use Jilfond\Apirosreestr\Exception\ApirosreestrException;
 
-class Client implements ClientInterface
+class ApiClient implements ClientInterface
 {
 
     /** @var string The API access token */
